@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    container_name: portfolio-app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
