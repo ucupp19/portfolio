@@ -59,7 +59,7 @@ mkdir -p logs
 
 # Stop existing containers
 print_status "Stopping existing containers..."
-docker-compose -f docker-compose.lightweight.yml down
+docker compose -f docker compose.lightweight.yml down
 
 # Clean up Docker cache to free memory
 print_status "Cleaning Docker cache..."
@@ -68,24 +68,24 @@ docker builder prune -f
 
 # Build and start the application with memory limits
 print_status "Building and starting the application (lightweight mode)..."
-if docker-compose -f docker-compose.lightweight.yml up --build -d; then
+if docker compose -f docker compose.lightweight.yml up --build -d; then
     print_success "Deployment successful!"
     print_status "Your portfolio is now running at:"
     echo "   - HTTP:  http://your-domain.com (redirects to HTTPS)"
     echo "   - HTTPS: https://your-domain.com"
     echo ""
     print_status "Container status:"
-    docker-compose -f docker-compose.lightweight.yml ps
+    docker compose -f docker compose.lightweight.yml ps
     echo ""
     print_status "Memory usage:"
     docker stats --no-stream --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
     echo ""
     print_status "Useful commands:"
-    echo "   - View logs: docker-compose -f docker-compose.lightweight.yml logs -f"
-    echo "   - Stop app:  docker-compose -f docker-compose.lightweight.yml down"
-    echo "   - Restart:   docker-compose -f docker-compose.lightweight.yml restart"
+    echo "   - View logs: docker compose -f docker-compose.lightweight.yml logs -f"
+    echo "   - Stop app:  docker compose -f docker-compose.lightweight.yml down"
+    echo "   - Restart:   docker compose -f docker-compose.lightweight.yml restart"
 else
     print_error "Deployment failed. Check the logs:"
-    docker-compose -f docker-compose.lightweight.yml logs
+    docker compose -f docker-compose.lightweight.yml logs
     exit 1
 fi 
