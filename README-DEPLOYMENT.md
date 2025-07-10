@@ -5,6 +5,7 @@ This guide will help you deploy your portfolio to a VPS using Docker and nginx w
 ## Prerequisites
 
 - A VPS with Docker and Docker Compose installed
+- Node.js (v20.19+ or v22.12+) for local development
 - A domain name pointing to your VPS
 - SSL certificates for your domain
 

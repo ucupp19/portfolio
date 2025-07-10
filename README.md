@@ -38,7 +38,7 @@ Visit the live portfolio: [Your Portfolio URL]
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js (v20.19+ or v22.12+)
 - npm or yarn
 
 ### Local Development
