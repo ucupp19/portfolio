@@ -12,11 +12,14 @@ fi
 # Check if SSL certificates exist
 if [ ! -f "./ssl/cert.pem" ] || [ ! -f "./ssl/key.pem" ]; then
     echo "⚠️  SSL certificates not found in ./ssl/ directory"
-    echo "📝 Please place your SSL certificates in the ssl/ directory:"
+    echo "📝 You can set up SSL certificates using:"
+    echo "   ./setup-ssl.sh"
+    echo ""
+    echo "🔗 Or manually place your SSL certificates in the ssl/ directory:"
     echo "   - ssl/cert.pem (your SSL certificate)"
     echo "   - ssl/key.pem (your private key)"
     echo ""
-    echo "🔗 You can get free SSL certificates from Let's Encrypt:"
+    echo "🔗 You can get free SSL certificates from Let's Encrypt using Certbot:"
     echo "   https://letsencrypt.org/getting-started/"
     exit 1
 fi

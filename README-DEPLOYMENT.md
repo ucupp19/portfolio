@@ -16,12 +16,10 @@ This guide will help you deploy your portfolio to a VPS using Docker and nginx w
    cd portfolio
    ```
 
-2. **Set up SSL certificates**
+2. **Set up SSL certificates with Certbot**
    ```bash
-   mkdir ssl
-   # Place your SSL certificates in the ssl/ directory:
-   # - ssl/cert.pem (your SSL certificate)
-   # - ssl/key.pem (your private key)
+   chmod +x setup-ssl.sh
+   ./setup-ssl.sh
    ```
 
 3. **Make the deployment script executable**
@@ -49,27 +47,63 @@ docker-compose ps
 docker-compose logs -f
 ```
 
-## Getting SSL Certificates
+## Getting SSL Certificates with Certbot
 
-### Option 1: Let's Encrypt (Free)
+### Step 1: Install Certbot
 
-1. Install Certbot on your VPS:
-   ```bash
-   sudo apt update
-   sudo apt install certbot
-   ```
+```bash
+# Update package list
+sudo apt update
 
-2. Get certificates:
-   ```bash
-   sudo certbot certonly --standalone -d yourdomain.com
-   ```
+# Install Certbot
+sudo apt install certbot
 
-3. Copy certificates to the ssl directory:
-   ```bash
-   sudo cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem ./ssl/cert.pem
-   sudo cp /etc/letsencrypt/live/yourdomain.com/privkey.pem ./ssl/key.pem
-   sudo chown $USER:$USER ./ssl/*
-   ```
+# Verify installation
+certbot --version
+```
+
+### Step 2: Get SSL Certificates
+
+```bash
+# Stop any services using ports 80/443 first
+sudo systemctl stop nginx
+sudo systemctl stop apache2
+
+# Get certificates for your domain
+sudo certbot certonly --standalone -d yourdomain.com
+
+# For multiple domains/subdomains
+sudo certbot certonly --standalone -d yourdomain.com -d www.yourdomain.com
+```
+
+### Step 3: Set Up Certificate Auto-Renewal
+
+```bash
+# Test auto-renewal
+sudo certbot renew --dry-run
+
+# Add to crontab for automatic renewal
+sudo crontab -e
+
+# Add this line to run twice daily
+0 12 * * * /usr/bin/certbot renew --quiet
+```
+
+### Step 4: Copy Certificates for Docker
+
+```bash
+# Create ssl directory
+mkdir -p ssl
+
+# Copy certificates (adjust domain name)
+sudo cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem ./ssl/cert.pem
+sudo cp /etc/letsencrypt/live/yourdomain.com/privkey.pem ./ssl/key.pem
+
+# Set proper permissions
+sudo chown $USER:$USER ./ssl/*
+chmod 600 ./ssl/key.pem
+chmod 644 ./ssl/cert.pem
+```
 
 ### Option 2: Self-signed (Development)
 
