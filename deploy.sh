@@ -29,28 +29,28 @@ mkdir -p logs
 
 # Stop existing containers
 echo "🛑 Stopping existing containers..."
-docker-compose down
+docker compose down
 
 # Build and start the application
 echo "🔨 Building and starting the application..."
-docker-compose up --build -d
+docker compose up --build -d
 
 # Check if the container is running
-if docker-compose ps | grep -q "Up"; then
+if docker compose ps | grep -q "Up"; then
     echo "✅ Deployment successful!"
     echo "🌐 Your portfolio is now running at:"
     echo "   - HTTP:  http://your-domain.com (redirects to HTTPS)"
     echo "   - HTTPS: https://your-domain.com"
     echo ""
     echo "📊 Container status:"
-    docker-compose ps
+    docker compose ps
     echo ""
     echo "📋 Useful commands:"
-    echo "   - View logs: docker-compose logs -f"
-    echo "   - Stop app:  docker-compose down"
-    echo "   - Restart:   docker-compose restart"
+    echo "   - View logs: docker compose logs -f"
+    echo "   - Stop app:  docker compose down"
+    echo "   - Restart:   docker compose restart"
 else
     echo "❌ Deployment failed. Check the logs:"
-    docker-compose logs
+    docker compose logs
     exit 1
 fi 
