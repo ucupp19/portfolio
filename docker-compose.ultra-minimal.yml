@@ -1,0 +1,30 @@
+services:
+  portfolio-static:
+    build:
+      context: .
+      dockerfile: Dockerfile.ultra-minimal
+    container_name: portfolio-static
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - NODE_OPTIONS=--max-old-space-size=64
+    volumes:
+      - portfolio-static-files:/app/dist
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: '0.5'
+        reservations:
+          memory: 32M
+          cpus: '0.25'
+    networks:
+      - portfolio-network
+
+volumes:
+  portfolio-static-files:
+
+
+networks:
+  portfolio-network:
+    driver: bridge
