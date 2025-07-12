@@ -17,6 +17,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Framer Motion** - Smooth animations and transitions
 - **GSAP** - Advanced animation library for complex effects
 - **React Icons** - Beautiful icon library
+- **Custom Animations** - SplitText, Typewriter, ScrollReveal, and TrueFocus components
 - **Docker Ready** - Easy deployment with Docker and nginx
 - **HTTPS Support** - Production-ready with SSL/TLS encryption
 
@@ -26,13 +27,24 @@ Visit the live portfolio: afrizz.my.id
 
 ## 🛠️ Tech Stack
 
+### Frontend Technologies
 - **Frontend Framework**: React 19.1.0
 - **Language**: TypeScript 5.8.3
 - **Styling**: Tailwind CSS 4.1.11
 - **Build Tool**: Vite 7.0.3
 - **Animations**: Framer Motion 12.23.0, GSAP 3.13.0
 - **Icons**: React Icons 5.5.0
-- **Deployment**: Docker, nginx
+
+### Backend & DevOps
+- **Runtime**: Node.js
+- **Database**: MySQL
+- **Web Server**: Apache, Nginx
+- **Containerization**: Docker
+- **Deployment**: Docker Compose
+
+### Programming Languages
+- **Frontend**: HTML5, CSS3, JavaScript, TypeScript
+- **Backend**: Python, Node.js
 
 ## 📦 Installation
 
@@ -45,7 +57,7 @@ Visit the live portfolio: afrizz.my.id
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/ucupp19/portfolio.git
    cd portfolio
    ```
 
@@ -97,17 +109,31 @@ docker-compose down
 portfolio/
 ├── public/                 # Static assets
 │   ├── certificates/      # Certificate images
+│   │   ├── python.png
+│   │   ├── javascripts.png
+│   │   ├── freecodecamp.png
+│   │   ├── networkingbasic.png
+│   │   └── networkingdevice.png
 │   └── projects/         # Project screenshots
+│       ├── LyricsVisualizer.png
+│       ├── LyricsAM.png
+│       └── DiscordBot.png
 ├── src/
 │   ├── components/       # React components
 │   │   ├── About.tsx
+│   │   ├── AnimatedContent.tsx
 │   │   ├── Certificates.tsx
 │   │   ├── Contact.tsx
+│   │   ├── Footer.tsx
 │   │   ├── Hero.tsx
 │   │   ├── Navbar.tsx
 │   │   ├── Projects.tsx
+│   │   ├── ScrollReveal.tsx
+│   │   ├── SplashCursor.tsx
+│   │   ├── SplitText.tsx
 │   │   ├── TechStack.tsx
-│   │   └── TrueFocus.tsx
+│   │   ├── TrueFocus.tsx
+│   │   └── Typewriter.tsx
 │   ├── App.tsx           # Main application component
 │   ├── main.tsx          # Application entry point
 │   └── index.css         # Global styles
@@ -116,6 +142,31 @@ portfolio/
 ├── nginx.conf           # Nginx configuration
 └── package.json         # Dependencies and scripts
 ```
+
+## 🎯 Featured Projects
+
+### 1. Lyrics Visualizer
+A web application that visualizes song lyrics with dynamic animations and effects. Built with modern web technologies to create an immersive music experience.
+
+**GitHub**: [lyrics-visualizer](https://github.com/ucupp19/lyrics-visualizer)
+
+### 2. Lyrics Music AM
+A comprehensive music application that displays synchronized lyrics with music playback. Features include real-time lyrics display and music controls.
+
+**GitHub**: [LyricsMusicAM](https://github.com/ucupp19/LyricsMusicAM)
+
+### 3. Discord Bot
+A feature-rich Discord bot with various utilities and entertainment features. Includes moderation tools, music playback, and interactive commands.
+
+**GitHub**: [MALAZ-BOTT](https://github.com/ucupp19/MALAZ-BOTT)
+
+## 🏆 Certifications
+
+- **Dicoding Python** - Python Programming Certification
+- **JavaScript Freecodecamp** - JavaScript Algorithms and Data Structures
+- **Responsive Web Design Freecodecamp** - Responsive Web Design Certification
+- **Networking Basic Cisco** - Cisco Networking Fundamentals
+- **Networking Device Cisco** - Cisco Device Configuration
 
 ## 🎨 Customization
 
@@ -144,6 +195,7 @@ Customize animations using:
 - **Framer Motion** - For component animations
 - **GSAP** - For complex timeline animations
 - **CSS Transitions** - For simple hover effects
+- **Custom Components** - SplitText, Typewriter, ScrollReveal, TrueFocus
 
 ## 📝 Available Scripts
 
@@ -220,6 +272,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Name**: Afrizz
 - **Email**: yusufafaris@gmail.com
+- **GitHub**: [github.com/ucupp19](https://github.com/ucupp19)
+- **Instagram**: [@afrizzz19](https://www.instagram.com/afrizzz19/)
 
 ---
 
