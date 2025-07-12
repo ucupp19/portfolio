@@ -62,7 +62,7 @@ else
 fi
 
 # Set memory limits for build
-export NODE_OPTIONS="--max-old-space-size=128 --optimize-for-size"
+export NODE_OPTIONS="--max-old-space-size=128"
 export NODE_ENV=production
 
 # Build the application

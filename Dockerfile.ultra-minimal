@@ -13,7 +13,7 @@ RUN npm ci --no-audit --no-fund --prefer-offline --production=false
 COPY . .
 
 # Build with extreme memory limits and optimizations
-ENV NODE_OPTIONS="--max-old-space-size=64 --optimize-for-size"
+ENV NODE_OPTIONS="--max-old-space-size=64"
 ENV NODE_ENV=production
 ENV VITE_BUILD_OPTIMIZE=true
 

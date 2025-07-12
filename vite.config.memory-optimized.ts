@@ -1,16 +1,21 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// Memory-optimized Vite config for 256MB VPS
 export default defineConfig({
     plugins: [react()],
     build: {
-        // Memory optimization
+        // Basic optimizations
         target: 'es2015',
         minify: 'esbuild',
         sourcemap: false,
 
-        // Chunk optimization for low memory
+        // Memory optimizations
+        reportCompressedSize: false,
+        emptyOutDir: true,
+        cssCodeSplit: false,
+
+        // Chunk optimization
         rollupOptions: {
             output: {
                 manualChunks: {
@@ -21,18 +26,9 @@ export default defineConfig({
             }
         },
 
-        // Reduce memory usage
+        // Size limits
         chunkSizeWarningLimit: 1000,
-
-        // Optimize for size
-        assetsInlineLimit: 4096,
-
-        // Disable CSS code splitting
-        cssCodeSplit: false,
-
-        // Additional memory optimizations
-        reportCompressedSize: false,
-        emptyOutDir: true
+        assetsInlineLimit: 4096
     },
 
     // Optimize dependencies
@@ -40,7 +36,7 @@ export default defineConfig({
         include: ['react', 'react-dom']
     },
 
-    // Server optimization
+    // Disable HMR for build
     server: {
         hmr: false
     }

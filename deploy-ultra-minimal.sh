@@ -64,7 +64,7 @@ print_status "Building with ultra-minimal configuration (64MB limit)..."
 print_warning "This may take longer due to extreme memory constraints..."
 
 # Set environment variables for low memory
-export NODE_OPTIONS="--max-old-space-size=64 --optimize-for-size"
+export NODE_OPTIONS="--max-old-space-size=64"
 export NODE_ENV=production
 
 if docker compose -f docker-compose.ultra-minimal.yml up --build -d; then
