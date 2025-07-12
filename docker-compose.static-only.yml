@@ -1,0 +1,55 @@
+services:
+  portfolio-static:
+    build:
+      context: .
+      dockerfile: Dockerfile.static-only
+    container_name: portfolio-static
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - portfolio-static-files:/app/dist
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.5'
+        reservations:
+          memory: 64M
+          cpus: '0.25'
+    networks:
+      - portfolio-network
+
+  # Your existing nginx service (example - adjust as needed)
+  nginx:
+    image: nginx:alpine
+    container_name: portfolio-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - portfolio-static-files:/usr/share/nginx/html:ro
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+    depends_on:
+      - portfolio-static
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.5'
+        reservations:
+          memory: 64M
+          cpus: '0.25'
+    networks:
+      - portfolio-network
+
+volumes:
+  portfolio-static-files:
+
+
+networks:
+  portfolio-network:
+    driver: bridge
